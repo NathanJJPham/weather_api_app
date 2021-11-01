@@ -1,12 +1,14 @@
 require 'httparty'
 class HomeController < ApplicationController
 
+  API_KEY = ENV["API_KEY"]
+
   def index
-      @url = HTTParty.get("https://api.openweathermap.org/data/2.5/weather?q=london&appid=1aafa1f2db60933c90470d715afc482d")
+      @current_weather = HTTParty.get("https://api.openweathermap.org/data/2.5/weather?q=london&appid=#{API_KEY}")
+      @lon = @current_weather['coord']['lon']
+      @lat = @current_weather['coord']['lat']
 
-      @lon = @url['coord']['lon']
-      @lat = @url['coord']['lat']
-
+      @forecast_weather = HTTParty.get("https://api.openweathermap.org/data/2.5/onecall?lat=#{@lat}&lon=#{@lon}&exclude=&appid=#{API_KEY}")
       
   end
 
