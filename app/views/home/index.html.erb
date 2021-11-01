@@ -1,13 +1,25 @@
 <h1>Weather App</h1>
 
-<div><%= @current_weather['name'] %></div>
-<div><%= @current_weather['weather'][0] %></div>
-<div><%= @current_weather['main'] %></div>
+<h1><%= @current_weather['name'] %></h1>
 
-<div>Wind: <%= @current_weather['wind'] %></div>
-<div>Clouds: <%= @current_weather['clouds'] %></div>
-
-<%= @forecast_weather %>
-
-
+<div class = "container">
+  <div>
+    <% @forecast_weather['daily'].each do |day| %>
+    <h3>Date: <%= day['dt'] %> </h3>
+    <img src="http://openweathermap.org/img/wn/10d@2x.png" />
+    <p>Weather: <%= day['weather'][0]['main'] %></p>
+    <p>Description: <%= day['weather'][0]['description'] %></p>
+    <p>High Temp: <%= day['temp']['max'] %> </p>
+    <p>Low Temp: <%= day['temp']['min'] %></p>
+    <p>Feels like: <%= day['feels_like']['day'] %>  </p>
+    <p>Pressure: <%= day['pressure'] %> </p>
+    <p>Humidty: <%= day['humidity'] %></p>
+    <p>UV Index: <%= day['uvi'] %></p>
+    <p>Dew Point: <%= day['dew_point'] %></p>
+    <p>Wind Speed <%= day['wind_speed'] %></p>
+    <p>Sunrise <%= day['sunrise'] %></p>
+    <p>Sunset <%= day['sunset'] %></p>
+    <% end %>
+  </div>
+</div>
 
