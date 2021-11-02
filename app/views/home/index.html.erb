@@ -8,8 +8,7 @@
     
     <div class = "daily ">
       <h3 class = "date">Date: <%= Time.at(@forecast_weather['daily'][0]['dt']).to_datetime.strftime "%m/%d/%Y" %> </h3>
-      <img src="http://openweathermap.org/img/wn/10d@2x.png" />
-
+      <img src= <%= "http://openweathermap.org/img/wn/#{@forecast_weather['daily'][0]['weather'][0]['icon']}@2x.png" %> />
       <div class = "hourly">
         <% @forecast_weather['hourly'].take(12).each do |hour|  %>
           <div class = "hour"> 
@@ -19,7 +18,6 @@
           </div>
         <% end %>
       </div>
-
       <p>Weather: <%= @forecast_weather['daily'][0]['weather'][0]['main'] %></p>
       <p>Description: <%= @forecast_weather['daily'][0]['weather'][0]['description'] %></p>
       <p>High Temp: <%= @forecast_weather['daily'][0]['temp']['max'] %> </p>
@@ -35,22 +33,22 @@
     </div>
 
     <% @forecast_weather['daily'].drop(1).each do |day| %>
-    <div class = "daily ">
-      <h3 class = "date">Date: <%= Time.at(day['dt']).to_datetime.strftime "%m/%d/%Y" %> </h3>
-      <img src="http://openweathermap.org/img/wn/10d@2x.png" />
-      <p>Weather: <%= day['weather'][0]['main'] %></p>
-      <p>Description: <%= day['weather'][0]['description'] %></p>
-      <p>High Temp: <%= day['temp']['max'] %> </p>
-      <p>Low Temp: <%= day['temp']['min'] %></p>
-      <p>Feels like: <%= day['feels_like']['day'] %>  </p>
-      <p>Pressure: <%= day['pressure'] %> </p>
-      <p>Humidty: <%= day['humidity'] %></p>
-      <p>UV Index: <%= day['uvi'] %></p>
-      <p>Dew Point: <%= day['dew_point'] %></p>
-      <p>Wind Speed <%= day['wind_speed'] %></p>
-      <p>Sunrise: <%= Time.at(day['sunrise']).utc.to_datetime.strftime "%H:%M" %> </p>
-      <p>Sunset <%= Time.at(day['sunset']).utc.to_datetime.strftime "%H:%M" %></p>
-    </div>
+      <div class = "daily ">
+        <h3 class = "date">Date: <%= Time.at(day['dt']).to_datetime.strftime "%m/%d/%Y" %> </h3>
+        <img src= <%= "http://openweathermap.org/img/wn/#{day['weather'][0]['icon']}@2x.png" %> />
+        <p>Weather: <%= day['weather'][0]['main'] %></p>
+        <p>Description: <%= day['weather'][0]['description'] %></p>
+        <p>High Temp: <%= day['temp']['max'] %> </p>
+        <p>Low Temp: <%= day['temp']['min'] %></p>
+        <p>Feels like: <%= day['feels_like']['day'] %>  </p>
+        <p>Pressure: <%= day['pressure'] %> </p>
+        <p>Humidty: <%= day['humidity'] %></p>
+        <p>UV Index: <%= day['uvi'] %></p>
+        <p>Dew Point: <%= day['dew_point'] %></p>
+        <p>Wind Speed <%= day['wind_speed'] %></p>
+        <p>Sunrise: <%= Time.at(day['sunrise']).utc.to_datetime.strftime "%H:%M" %> </p>
+        <p>Sunset <%= Time.at(day['sunset']).utc.to_datetime.strftime "%H:%M" %></p>
+      </div>
     <% end %>
 
 </div>
