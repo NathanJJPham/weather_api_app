@@ -1,9 +1,40 @@
 <h1>Weather App</h1>
-
-<h1 class = "city"><%= @current_weather['name'] %></h1>
+<div>
+  <h1 class = "city"><%= @current_weather['name'] %></h1>
+  <h2>It is <%= Time.at(@current_weather['dt']).to_datetime.strftime "%H:%M" %></h2>
+</div>
 
 <div class = "container">
-    <% @forecast_weather['daily'].each do |day| %>
+    
+    <div class = "daily ">
+      <h3 class = "date">Date: <%= Time.at(@forecast_weather['daily'][0]['dt']).to_datetime.strftime "%m/%d/%Y" %> </h3>
+      <img src="http://openweathermap.org/img/wn/10d@2x.png" />
+
+      <div class = "hourly">
+        <% @forecast_weather['hourly'].take(8).each do |hour|  %>
+          <div class = "hour"> 
+          <p> Hour: <%= Time.at(hour['dt']).to_datetime.strftime "%H:%M" %></p>
+          <p>Weather: <%= hour['weather'][0]['main'] %></p>
+          <p>Temp: <%= hour['temp'] %></p>
+          </div>
+        <% end %>
+      </div>
+
+      <p>Weather: <%= @forecast_weather['daily'][0]['weather'][0]['main'] %></p>
+      <p>Description: <%= @forecast_weather['daily'][0]['weather'][0]['description'] %></p>
+      <p>High Temp: <%= @forecast_weather['daily'][0]['temp']['max'] %> </p>
+      <p>Low Temp: <%= @forecast_weather['daily'][0]['temp']['min'] %></p>
+      <p>Feels like: <%= @forecast_weather['daily'][0]['feels_like'][''] %>  </p>
+      <p>Pressure: <%= @forecast_weather['daily'][0]['pressure'] %> </p>
+      <p>Humidty: <%= @forecast_weather['daily'][0]['humidity'] %></p>
+      <p>UV Index: <%= @forecast_weather['daily'][0]['uvi'] %></p>
+      <p>Dew Point: <%= @forecast_weather['daily'][0]['dew_point'] %></p>
+      <p>Wind Speed <%= @forecast_weather['daily'][0]['wind_speed'] %></p>
+      <p>Sunrise: <%= Time.at(@forecast_weather['daily'][0]['sunrise']).utc.to_datetime.strftime "%H:%M" %> </p>
+      <p>Sunset <%= Time.at(@forecast_weather['daily'][0]['sunset']).utc.to_datetime.strftime "%H:%M" %></p>
+    </div>
+
+    <% @forecast_weather['daily'].drop(1).each do |day| %>
     <div class = "daily ">
       <h3 class = "date">Date: <%= Time.at(day['dt']).to_datetime.strftime "%m/%d/%Y" %> </h3>
       <img src="http://openweathermap.org/img/wn/10d@2x.png" />
@@ -21,18 +52,6 @@
       <p>Sunset <%= Time.at(day['sunset']).utc.to_datetime.strftime "%H:%M" %></p>
     </div>
     <% end %>
+
 </div>
 
-<div class = "hourly">
-  <% @forecast_weather['hourly'].each_with_index do |hour, i|  %>
-    <div class = "hour"> 
-      <% if i < 8 %>
-        <p> Hour: <%= Time.at(hour['dt']).to_datetime.strftime "%H:%M" %></p>
-        <p>Weather: <%= hour['weather'][0]['main'] %></p>
-        <p>Temp: <%= hour['temp'] %></p>
-      <% else %>
-        <p></p>
-      <% end %>
-    </div>
-  <% end %>
-</div>
