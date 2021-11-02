@@ -1,4 +1,5 @@
 require 'httparty'
+require 'date'
 class HomeController < ApplicationController
 
   API_KEY = ENV["API_KEY"]

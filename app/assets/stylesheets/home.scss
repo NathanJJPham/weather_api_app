@@ -1,3 +1,18 @@
 // Place all the styles related to the home controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
+.daily{
+    border-style: solid;
+    margin: 1rem;
+    padding: 0.5rem;
+}
+
+.hourly{
+    display: flex;
+    margin: 2rem;
+    padding: 0.5rem;
+}
+
+.hour{
+    padding: 1rem;
+}

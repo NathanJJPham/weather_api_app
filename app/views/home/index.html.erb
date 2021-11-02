@@ -1,25 +1,38 @@
 <h1>Weather App</h1>
 
-<h1><%= @current_weather['name'] %></h1>
+<h1 class = "city"><%= @current_weather['name'] %></h1>
 
 <div class = "container">
-  <div>
     <% @forecast_weather['daily'].each do |day| %>
-    <h3>Date: <%= day['dt'] %> </h3>
-    <img src="http://openweathermap.org/img/wn/10d@2x.png" />
-    <p>Weather: <%= day['weather'][0]['main'] %></p>
-    <p>Description: <%= day['weather'][0]['description'] %></p>
-    <p>High Temp: <%= day['temp']['max'] %> </p>
-    <p>Low Temp: <%= day['temp']['min'] %></p>
-    <p>Feels like: <%= day['feels_like']['day'] %>  </p>
-    <p>Pressure: <%= day['pressure'] %> </p>
-    <p>Humidty: <%= day['humidity'] %></p>
-    <p>UV Index: <%= day['uvi'] %></p>
-    <p>Dew Point: <%= day['dew_point'] %></p>
-    <p>Wind Speed <%= day['wind_speed'] %></p>
-    <p>Sunrise <%= day['sunrise'] %></p>
-    <p>Sunset <%= day['sunset'] %></p>
+    <div class = "daily ">
+      <h3 class = "date">Date: <%= Time.at(day['dt']).to_datetime.strftime "%m/%d/%Y" %> </h3>
+      <img src="http://openweathermap.org/img/wn/10d@2x.png" />
+      <p>Weather: <%= day['weather'][0]['main'] %></p>
+      <p>Description: <%= day['weather'][0]['description'] %></p>
+      <p>High Temp: <%= day['temp']['max'] %> </p>
+      <p>Low Temp: <%= day['temp']['min'] %></p>
+      <p>Feels like: <%= day['feels_like']['day'] %>  </p>
+      <p>Pressure: <%= day['pressure'] %> </p>
+      <p>Humidty: <%= day['humidity'] %></p>
+      <p>UV Index: <%= day['uvi'] %></p>
+      <p>Dew Point: <%= day['dew_point'] %></p>
+      <p>Wind Speed <%= day['wind_speed'] %></p>
+      <p>Sunrise: <%= Time.at(day['sunrise']).utc.to_datetime.strftime "%H:%M" %> </p>
+      <p>Sunset <%= Time.at(day['sunset']).utc.to_datetime.strftime "%H:%M" %></p>
+    </div>
     <% end %>
-  </div>
 </div>
 
+<div class = "hourly">
+  <% @forecast_weather['hourly'].each_with_index do |hour, i|  %>
+    <div class = "hour"> 
+      <% if i < 8 %>
+        <p> Hour: <%= Time.at(hour['dt']).to_datetime.strftime "%H:%M" %></p>
+        <p>Weather: <%= hour['weather'][0]['main'] %></p>
+        <p>Temp: <%= hour['temp'] %></p>
+      <% else %>
+        <p></p>
+      <% end %>
+    </div>
+  <% end %>
+</div>
