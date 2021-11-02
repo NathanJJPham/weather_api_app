@@ -1,15 +1,22 @@
 // Place all the styles related to the home controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
+
+.container{
+    // overflow-x: scroll;
+    // overflow-y: hidden;
+    // white-space: nowrap;
+}
 .daily{
     border-style: solid;
     margin: 1rem;
     padding: 0.5rem;
+    // display: inline-block;
 }
 
 .hourly{
     display: flex;
-    margin: 2rem;
+    margin: auto;
     padding: 0.5rem;
     overflow-x: scroll;
     overflow-y: hidden;

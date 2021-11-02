@@ -2,19 +2,24 @@
 <div>
   <h1 class = "city"><%= @current_weather['name'] %></h1>
   <h2>It is <%= Time.at(@current_weather['dt']).to_datetime.strftime "%H:%M" %></h2>
+  <%= @lon %> and <%= @lat %>
+
+  <%= form_tag(home_index_path, method: :get) do %>
+    <%= text_field_tag(:search, params[:search])%>
+    <%= submit_tag ("Search") %>
+  <% end %>
+
 </div>
 
 <div class = "container">
-    
     <div class = "daily ">
-      <h3 class = "date">Date: <%= Time.at(@forecast_weather['daily'][0]['dt']).to_datetime.strftime "%m/%d/%Y" %> </h3>
-      <img src= <%= "http://openweathermap.org/img/wn/#{@forecast_weather['daily'][0]['weather'][0]['icon']}@2x.png" %> />
+      <h3 class = "date"><%= Time.at(@forecast_weather['daily'][0]['dt']).to_datetime.strftime "%A: %m/%d/%Y" %> </h3>
       <div class = "hourly">
         <% @forecast_weather['hourly'].take(12).each do |hour|  %>
           <div class = "hour"> 
-          <p> Hour: <%= Time.at(hour['dt']).to_datetime.strftime "%H:%M" %></p>
-          <p>Weather: <%= hour['weather'][0]['main'] %></p>
-          <p>Temp: <%= hour['temp'] %></p>
+            <p> Hour: <%= Time.at(hour['dt']).to_datetime.strftime "%H:%M" %></p> 
+            <img src= <%= "http://openweathermap.org/img/wn/#{@forecast_weather['daily'][0]['weather'][0]['icon']}@2x.png" %> />
+            <p>Temp: <%= hour['temp'] %></p>
           </div>
         <% end %>
       </div>
@@ -22,7 +27,7 @@
       <p>Description: <%= @forecast_weather['daily'][0]['weather'][0]['description'] %></p>
       <p>High Temp: <%= @forecast_weather['daily'][0]['temp']['max'] %> </p>
       <p>Low Temp: <%= @forecast_weather['daily'][0]['temp']['min'] %></p>
-      <p>Feels like: <%= @forecast_weather['daily'][0]['feels_like'][''] %>  </p>
+      <p>Feels like: <%= @forecast_weather['daily'][0]['feels_like']['day'] %>  </p>
       <p>Pressure: <%= @forecast_weather['daily'][0]['pressure'] %> </p>
       <p>Humidty: <%= @forecast_weather['daily'][0]['humidity'] %></p>
       <p>UV Index: <%= @forecast_weather['daily'][0]['uvi'] %></p>
@@ -34,7 +39,7 @@
 
     <% @forecast_weather['daily'].drop(1).each do |day| %>
       <div class = "daily ">
-        <h3 class = "date">Date: <%= Time.at(day['dt']).to_datetime.strftime "%m/%d/%Y" %> </h3>
+        <h3 class = "date"><%= Time.at(day['dt']).to_datetime.strftime "%A: %m/%d/%Y" %> </h3>
         <img src= <%= "http://openweathermap.org/img/wn/#{day['weather'][0]['icon']}@2x.png" %> />
         <p>Weather: <%= day['weather'][0]['main'] %></p>
         <p>Description: <%= day['weather'][0]['description'] %></p>
