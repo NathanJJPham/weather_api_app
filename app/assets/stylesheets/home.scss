@@ -21,9 +21,27 @@
     overflow-x: scroll;
     overflow-y: hidden;
     white-space: nowrap;
+    
 }
 
 .hour{
     padding: 1rem;
     display: inline-block;
+}
+
+.data{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-auto-rows: minmax(100px,auto);
+}
+
+.dataTwo{
+    display: flex;
+    justify-content: space-around;
+    text-align: center;
+}
+
+.test{
+    display: grid;
+    grid-template-columns: 1fr;
 }

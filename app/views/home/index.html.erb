@@ -1,7 +1,5 @@
 <h1>Weather App</h1>
 <div>
-  <h1 class = "city"><%= @current_weather['name'] %></h1>
-  <h2>It is <%= Time.at(@current_weather['dt']).to_datetime.strftime "%H:%M" %></h2>
   <%= @lon %> and <%= @lat %>
 
   <%= form_tag(home_index_path, method: :get) do %>
@@ -12,8 +10,17 @@
 </div>
 
 <div class = "container">
+
     <div class = "daily ">
+
+      <h1 class = "city"><%= @current_weather['name'] %></h1>
+      <h2>It is <%= Time.at(@current_weather['dt']).to_datetime.strftime "%H:%M" %></h2>
       <h3 class = "date"><%= Time.at(@forecast_weather['daily'][0]['dt']).to_datetime.strftime "%A: %m/%d/%Y" %> </h3>
+      <h4><%= @forecast_weather['daily'][0]['weather'][0]['main'] %></h4>
+      <h1><%= @current_weather['main']['temp']  %></h1>
+      <span>
+        H: <%= @forecast_weather['daily'][0]['temp']['max'] %> L: <%= @forecast_weather['daily'][0]['temp']['min'] %>
+      </span>
       <div class = "hourly">
         <% @forecast_weather['hourly'].take(12).each do |hour|  %>
           <div class = "hour"> 
@@ -23,18 +30,50 @@
           </div>
         <% end %>
       </div>
-      <p>Weather: <%= @forecast_weather['daily'][0]['weather'][0]['main'] %></p>
-      <p>Description: <%= @forecast_weather['daily'][0]['weather'][0]['description'] %></p>
-      <p>High Temp: <%= @forecast_weather['daily'][0]['temp']['max'] %> </p>
-      <p>Low Temp: <%= @forecast_weather['daily'][0]['temp']['min'] %></p>
-      <p>Feels like: <%= @forecast_weather['daily'][0]['feels_like']['day'] %>  </p>
-      <p>Pressure: <%= @forecast_weather['daily'][0]['pressure'] %> </p>
-      <p>Humidty: <%= @forecast_weather['daily'][0]['humidity'] %></p>
-      <p>UV Index: <%= @forecast_weather['daily'][0]['uvi'] %></p>
-      <p>Dew Point: <%= @forecast_weather['daily'][0]['dew_point'] %></p>
-      <p>Wind Speed <%= @forecast_weather['daily'][0]['wind_speed'] %></p>
-      <p>Sunrise: <%= Time.at(@forecast_weather['daily'][0]['sunrise']).utc.to_datetime.strftime "%H:%M" %> </p>
-      <p>Sunset <%= Time.at(@forecast_weather['daily'][0]['sunset']).utc.to_datetime.strftime "%H:%M" %></p>
+
+      <div class = "data">
+        <div>
+        <% @forecast_weather['daily'].drop(1).each do |day| %>
+          <h4 class = "date"><%= Time.at(day['dt']).to_datetime.strftime "%A" %> </h4>
+        <% end %>
+        </div>
+        <div class = 'test'>
+        <% @forecast_weather['daily'].drop(1).each do |day| %>
+            <img src= <%= "http://openweathermap.org/img/wn/#{day['weather'][0]['icon']}.png" %> />
+        <% end %>
+        </div>
+        <div>
+        <% @forecast_weather['daily'].drop(1).each do |day| %>
+            <p>H: <%= day['temp']['max'] %> </p>
+        <% end %>
+        </div>
+        <div>
+        <% @forecast_weather['daily'].drop(1).each do |day| %>
+            <p>L: <%= day['temp']['min'] %></p>
+        <% end %>
+        </div>
+
+      </div>
+
+      <div class = "dataTwo">
+        <div>
+          <p>Weather: <%= @forecast_weather['daily'][0]['weather'][0]['main'] %></p>
+          <p>Description: <%= @forecast_weather['daily'][0]['weather'][0]['description'] %></p>
+          <p>High Temp: <%= @forecast_weather['daily'][0]['temp']['max'] %> </p>
+          <p>Low Temp: <%= @forecast_weather['daily'][0]['temp']['min'] %></p>
+          <p>Feels like: <%= @forecast_weather['daily'][0]['feels_like']['day'] %>  </p>
+          <p>Pressure: <%= @forecast_weather['daily'][0]['pressure'] %> </p>
+        </div>
+        <div>
+          <p>Humidty: <%= @forecast_weather['daily'][0]['humidity'] %></p>
+          <p>UV Index: <%= @forecast_weather['daily'][0]['uvi'] %></p>
+          <p>Dew Point: <%= @forecast_weather['daily'][0]['dew_point'] %></p>
+          <p>Wind Speed <%= @forecast_weather['daily'][0]['wind_speed'] %></p>
+          <p>Sunrise: <%= Time.at(@forecast_weather['daily'][0]['sunrise']).utc.to_datetime.strftime "%H:%M" %> </p>
+          <p>Sunset <%= Time.at(@forecast_weather['daily'][0]['sunset']).utc.to_datetime.strftime "%H:%M" %></p>
+        </div>
+      </div>
+
     </div>
 
     <% @forecast_weather['daily'].drop(1).each do |day| %>
