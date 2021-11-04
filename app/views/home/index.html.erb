@@ -16,7 +16,7 @@
 
 <div class = "container "  >
 
-    <div class = "daily" style = "background-color: rgba(45,134,182,0.5) ">
+    <div class = "daily d<%= @current_weather['weather'][0]['icon']%> ">
 
       <div class = "current-forecast border">
         <p class = "city"><%= @current_weather['name'] %></p>
@@ -50,8 +50,7 @@
             </div>
           <% end %>
         </div>
-
-
+]
       <div class = "today-forecast">
         <span>
           <p>Weather: <%= @forecast_weather['daily'][0]['weather'][0]['main'] %></p>

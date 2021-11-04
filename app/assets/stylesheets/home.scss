@@ -2,91 +2,109 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
 :root{
-    font-family: 'Zen Kaku Gothic Antique', sans-serif;
+  font-family: 'Zen Kaku Gothic Antique', sans-serif;
 }
 
 body {
-    background-color: rgb(222, 222, 224);
+  background-color: rgb(222, 222, 224);
 }
 
 .header{
-    position: sticky;
-    top: 0;
-    z-index: 100;
-    background-color: rgb(222, 222, 224);
-    padding: 0.5rem;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background-color: rgb(222, 222, 224);
+  padding: 0.5rem;
 }
 
 .container{
-    color: white
+  color: white
 }
 
 .daily{
-    padding: 0.5rem;
-    border-radius: 1rem;
-    border-width: thin;
-    border-style: solid;
-    border-color: white;
-    max-width: 80rem;
-    margin: auto;
-    margin-top: 0.5rem;
+  padding: 0.5rem;
+  border-radius: 1rem;
+  border-width: thin;
+  border-style: solid;
+  border-color: white;
+  max-width: 80rem;
+  margin: auto;
+  margin-top: 0.5rem;
 }
 .city{
-    margin: auto;
-    font-size: 36px;
+  margin: auto;
+  font-size: 36px;
 }
 
 .current-forecast{
-    display: flex;
-    flex-direction: column;
-    justify-items: center;
-    text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-items: center;
+  text-align: center;
 
 }
 .hourly-forecast{
-    display: flex;
-    margin: auto;
-    padding: 0.5rem;
-    overflow-x: scroll;
-    overflow-y: hidden;
-    white-space: nowrap;
+  display: flex;
+  margin: auto;
+  padding: 0.5rem;
+  overflow-x: scroll;
+  overflow-y: hidden;
+  white-space: nowrap;
 }
 
 .hour{
-    padding: 1rem;
-    display: inline-block;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  padding: 1rem;
+  display: inline-block;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .week-forecast{
-    display: flex; 
-    justify-content:flex-start; 
-    align-items:center; 
-    text-align: center;
+  display: flex; 
+  justify-content:flex-start; 
+  align-items:center; 
+  text-align: center;
 }
 
 .today-forecast{
-    display: flex;
-    justify-content: space-around;
-    text-align: center;
+  display: flex;
+  justify-content: space-around;
+  text-align: center;
 }
 
 .test{
-    display: grid;
-    grid-template-columns: 1fr;
+  display: grid;
+  grid-template-columns: 1fr;
 }
 
 .border{
-    border-bottom: solid;
-    border-color: white;
-    border-width: thin;
+  border-bottom: solid;
+  border-color: white;
+  border-width: thin;
     
 }
 
 .future-forecast {
-    display: flex;
-    // justify-content: space-between;
+  display: flex;
+  // justify-content: space-between;
+}
+
+.d01d, .d02d, .d01n, .d02n{
+  background-color: rgba(45,134,182,0.5)
+}
+
+.d03d, .d04d, .d13d, .d03n, .d04n, .d13n{
+  background-color: rgba(90,117,137,1)
+}
+
+
+.d50d, .d50n{
+  background-color: rgba(70,70,78,1)
+
+}
+
+.d09d, .d10d, .d11d, .d09n, .d10n, .d11n{
+  background-color: rgba(65,78,93,1)
 }
 
