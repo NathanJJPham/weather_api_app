@@ -62,12 +62,12 @@ body {
 
 .week-forecast{
     display: flex; 
-    justify-content:space-evenly; 
+    justify-content:flex-start; 
     align-items:center; 
     text-align: center;
 }
 
-.day-forecast{
+.today-forecast{
     display: flex;
     justify-content: space-around;
     text-align: center;
@@ -84,3 +84,9 @@ body {
     border-width: thin;
     
 }
+
+.future-forecast {
+    display: flex;
+    // justify-content: space-between;
+}
+

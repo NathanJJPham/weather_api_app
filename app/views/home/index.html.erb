@@ -6,11 +6,12 @@
  <%= @lon %> and <%= @lat %> 
 <%
 =end%>
-    <%= form_tag(home_index_path, method: :get) do %>
-      <%= text_field_tag(:search, params[:search])%>
+    <%= form_tag("index", method: "get") do %>
+      <%= text_field_tag(:search)%>
       <%= submit_tag ("Search") %>
     <% end %>
   </div>
+  
 </header>
 
 <div class = "container "  >
@@ -38,18 +39,20 @@
         <% end %>
       </div>
 
-      <div class="border">
-          <% @forecast_weather['daily'].drop(1).each do |day| %>
-            <span class = "week-forecast">
+      <div class="future-forecast border">
+        <div>
+          <% @forecast_weather['daily'].drop(1).each_with_index do |day, i| %>
+            <div class = "week-forecast <%= i %>" >
               <p class = "date"><%= Time.at(day['dt']).to_datetime.strftime "%A" %> </p>
               <img src= <%= "http://openweathermap.org/img/wn/#{day['weather'][0]['icon']}.png" %> />
               <p>H: <%= day['temp']['max'] %> </p>
               <p>L: <%= day['temp']['min'] %></p>
-            </span>
+            </div>
           <% end %>
-      </div>
+        </div>
 
-      <div class = "day-forecast">
+
+      <div class = "today-forecast">
         <span>
           <p>Weather: <%= @forecast_weather['daily'][0]['weather'][0]['main'] %></p>
           <p>Description: <%= @forecast_weather['daily'][0]['weather'][0]['description'] %></p>
