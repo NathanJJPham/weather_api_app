@@ -4,10 +4,11 @@ require 'date'
 class HomeController < ApplicationController
 
   API_KEY = ENV["API_KEY"]
-
+  
   def index
 
     @search = params[:search]
+    @search = 'tampa' if @search.nil?
     if @search.include?(" ")
       @search.gsub(" ", "%20")
     else
