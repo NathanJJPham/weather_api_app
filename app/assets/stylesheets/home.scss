@@ -112,7 +112,11 @@ body {
   color: #FFFFFF;
   text-decoration: none;
   border: 2px solid white;
+}
 
+.pineapple:active {
+  background-image: linear-gradient(to top, #9abca7, #71a9f7);
+  transform: translateY(4px);
 }
 
 .test{
@@ -130,4 +134,22 @@ body {
   flex-direction: column;
   align-items: center;
 }
+.search{
+  font-family: 'Zen Kaku Gothic Antique', sans-serif;
+  border-radius: 1rem;
+  padding: 0.5rem;
+  border: 2px solid white;
 
+}
+
+.search:active {
+  background-image: linear-gradient(to top, #9abca7, #71a9f7);
+  transform: translateY(4px);
+}
+
+#search{
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  border: 2px solid white;
+
+}
