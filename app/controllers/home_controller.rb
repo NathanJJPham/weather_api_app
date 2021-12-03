@@ -8,7 +8,7 @@ class HomeController < ApplicationController
   def index
 
     @search = params[:search]
-    @search = 'tampa' if @search.nil?
+    @search = 'kansas city' if @search.nil?
     if @search.include?(" ")
       @search.gsub(" ", "%20")
     else
