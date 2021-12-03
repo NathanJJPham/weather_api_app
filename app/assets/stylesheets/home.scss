@@ -16,7 +16,11 @@ body {
   background-color: rgb(222, 222, 224);
   padding: 0.5rem;
 }
-
+.header-content{
+  max-width: 80rem;
+  margin: auto;
+  margin-top: 0.5rem;
+}
 .container{
   color: white
 }
@@ -62,7 +66,7 @@ body {
 
 .week-forecast{
   display: flex; 
-  justify-content:flex-start; 
+  justify-content:space-evenly; 
   align-items:center; 
   text-align: center;
 }
@@ -85,26 +89,21 @@ body {
     
 }
 
-.future-forecast {
-  display: flex;
-  // justify-content: space-between;
-}
-
-.d01d, .d02d, .d01n, .d02n{
+.pic01d, .pic02d, .pic01n, .pic02n{
   background-color: rgba(45,134,182,0.5)
 }
 
-.d03d, .d04d, .d13d, .d03n, .d04n, .d13n{
+.pic03d, .pic04d, .pic13d, .pic03n, .pic04n, .pic13n{
   background-color: rgba(90,117,137,1)
 }
 
-
-.d50d, .d50n{
+.pic50d, .pic50n{
   background-color: rgba(70,70,78,1)
-
 }
 
-.d09d, .d10d, .d11d, .d09n, .d10n, .d11n{
+.pic09d, .pic10d, .pic11d, .pic09n, .pic10n, .pic11n{
   background-color: rgba(65,78,93,1)
 }
+
+
 
