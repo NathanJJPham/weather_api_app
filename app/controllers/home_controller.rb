@@ -16,6 +16,7 @@ class HomeController < ApplicationController
     end
     
     @current_weather = HTTParty.get("https://api.openweathermap.org/data/2.5/weather?q=#{@search}&appid=#{API_KEY}&units=imperial")
+    
     @lon = @current_weather['coord']['lon']
     @lat = @current_weather['coord']['lat']
 

@@ -105,5 +105,29 @@ body {
   background-color: rgba(65,78,93,1)
 }
 
+.pineapple{
+  padding: 2rem;
+  background-color: rgba(45,134,182,0.5);
+  border-radius: 1rem;
+  color: #FFFFFF;
+  text-decoration: none;
+  border: 2px solid white;
 
+}
+
+.test{
+  display: flex;
+  justify-content: center;
+}
+
+.testtwo{
+  display: flex;
+  flex-direction: column;
+}
+.testthree{
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
 
